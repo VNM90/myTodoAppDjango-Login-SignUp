@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% block content %}
+<div class="create-container">
+  <h1>TASK</h1>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}{{form.title}} {{form.description}}
+    <div class="complete-container">
+      {{form.complete.label}}: {{form.complete}}
+    </div>
+    {{form.user}}
+    <button class="button-create" type="submit">Submit</button>
+  </form>
+  <p class="go-back">
+    <a href="{% url 'home' %}">Go Back</a>
+  </p>
+</div>
+{% endblock%}

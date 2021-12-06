@@ -1,0 +1,26 @@
+{% extends 'base.html' %} {% block content %}
+<div class="task-container">
+  <div class="user-container">
+    {% if request.user.is_authenticated%}
+    <p>Hello, {{request.user}}</p>
+    <a href="{%url 'create' %}">Add New Task</a>
+    <a href="{% url 'logout' %}">Logout</a>
+    {%else%}
+    <a href="{% url 'login' %}">Login</a>
+    <a href="{% url 'register' %}">Register</a>
+    {% endif %}
+  </div>
+  <div class="user-todo">
+    {% for element in todo %} {% comment %} {% for element in todo %} {%
+    endcomment %} {% comment %} {% if element.task_image %}
+    <img src="{{element.task_image.url}}" />
+    {%else%} {%endif%} {% endcomment %}<div>Title: {{element.title}}<br>
+    Description: {{element.description}}<br> Date of create: {{element.date}}<br> Complete: {{element.complete}}</div>
+      <div class='update-delete'>
+      <a class='button-update' href="{%url 'update' element.id %}"><button>Edit</button></a>
+      <a class='button-delete'href="{%url 'delete' element.id %}"><button>Delete</button></a>
+      </div>
+      {% endfor %} {% endblock %}
+    </div>
+  </div>
+</div>
